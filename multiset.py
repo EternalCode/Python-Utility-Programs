@@ -1,11 +1,3 @@
-"""
-A Multiset(ADT) class that works from a SkipList.
-Also contains exceptions.
-
-Author: Dilshan Gunasekera & Tianhe Hou
-UtorID: gunasek4 & houtainh
-Student #: 999891149 & 998241399
-"""
 
 import splaytree
 
