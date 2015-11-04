@@ -2,10 +2,6 @@
 A SplayTree class that uses a standard binary tree as a base. Values contained
 in the tree are not required to be unique. In addition uses SplayTree operations
 such as zig, zag, zig-zig, zag-zag, zig-zag, zag-zig
-
-Author: Dilshan Gunasekera & Tianhe Hou
-UtorID: gunasek4 & houtainh
-Student #: 999891149 & 998241399
 """
 
 class BTNode(object):
