@@ -1,11 +1,3 @@
-"""
-SkipList implementation, using node classes.
-
-Author: Dilshan Gunasekera
-UtorID: gunasek4
-Student #: 999891149
-"""
-
 import random
 
 class BodyNode(object):
