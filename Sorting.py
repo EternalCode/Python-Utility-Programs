@@ -21,12 +21,12 @@ def merge(one, two):
     #loop while the sorted list is not the size of the two lists combined
     while (len(sorted_list) != fin_len):
         #two cases to check first, if two is empty and one is not
-        if (!len(one)):
+        if (not len(one)):
             #if one was empty, then two is non-empty by the while condition
-            return (sorted_list + one)
-        elif (!len(two)):
+            return (sorted_list + two)
+        elif (not len(two)):
             #if two was empty, then one is non-empty by the while condition
-            (return sorted_list + two)
+            (return sorted_list + one)
         else:
             #check first indicy of one and first indicy of two         
             if (one[0] <= two[0]):
