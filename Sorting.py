@@ -3,18 +3,13 @@ def merge_sort(one):
     Given an unsorted list, osrt it using merge sort
     '''
     #base case: Empty list or list with 1 element, return the list
-    if len(one) == 0:
-        return one
-    elif len(one) == 1:
+    if len(one) <= 1:
         return one
     else:
-        #split the list into two smaller lists
-        half = len(one)//2
-        #recusively call merge sort on each halves for the bigger list
-        p1 = merge_sort(one[:half])
-        p2 = merge_sort(one[half:])
+        top = merge_sort(one[:len(one)/2])
+        bot = merge_sort(one[len(one)/2:])
         #call the merge helper function to merge two sorted lists
-        return merge(p1, p2)
+        return merge(top, bot)
         
 
 def merge(one, two):
@@ -26,30 +21,23 @@ def merge(one, two):
     #loop while the sorted list is not the size of the two lists combined
     while (len(sorted_list) != fin_len):
         #two cases to check first, if two is empty and one is not
-        if (len(one) == 0):
+        if (!len(one)):
             #if one was empty, then two is non-empty by the while condition
-            for element in two:
-                sorted_list.append(element)
-            #break loop early, since we are done
-            return sorted_list
-        #if one is empty and two is not
-        elif (len(two) == 0):
+            return (sorted_list + one)
+        elif (!len(two)):
             #if two was empty, then one is non-empty by the while condition
-            for element in one:
-                sorted_list.append(element)
-            #break loop early, since we are done
-            return sorted_list            
+            (return sorted_list + two)
         else:
             #check first indicy of one and first indicy of two         
-            if one[0] <= two[0]:
+            if (one[0] <= two[0]):
                 #if one's first indicy was smaller than or equal to two's
                 #remove it and place it into the sorted list
                 sorted_list.append(one[0])
-                one.remove(one[0])
+                one = one[1:]
             else:
                 #otherwise put two's first indicy into the sorted list
                 sorted_list.append(two[0])
-                two.remove(two[0])
+                two = two[1:]
     #return the sorted list the while loop as been satisfied
     return sorted_list
 
@@ -58,22 +46,13 @@ def selection_sort(one):
     '''
     given an unsorted list, sort it using selection sort algorithm.
     '''
-    #loop through the list and append the smallest element into another list
-    sorted_list = []
-    while (len(one) != 0):
-        #assume the smallest element is the first element
-        current_smallest = one[0]
-        #loop through the list
-        for element in one:
-            #adjust current smallest by comparing with every element in the list
-            if element <= current_smallest:
-                current_smallest = element
-        #once the smallest element is verified put it into the sorted list and
-        #remove it from the unsorted list
-        one.remove(current_smallest)
-        sorted_list.append(current_smallest)
-    #return the sorted list
-    return sorted_list
+    for j in range(0, len(l)):
+        smallest = j
+        for i in range(j, len(l)):
+            if (l[i] < l[smallest]):
+                smallest = i;
+        l[j], l[smallest] = l[smallest], l[j]
+    return l
 
 
 def insertion_sort(one):
@@ -83,10 +62,7 @@ def insertion_sort(one):
     #loop through the list
     for index in range(0, len(one)):
         #take the element make sure it has a previous
-        if index == 0:
-            #do nothing
-            x = "filler"
-        else:
+        if (index > 0):
             cl = index -1
             while (one[index] < one[cl]):
                 #check the next element down the line if there is one
@@ -102,20 +78,14 @@ def insertion_sort(one):
             #if it's not less, then do nothing
     return two
             
-            
+import heapq as heap
 def heap_sort(list):
     '''
     Given a list, use a heap sort algorithm to sort it
     '''
-    my_heap = Heap()
-    ret = []
-    #insert all elements in the list into the heap
-    for element in list:
-        my_heap.insert(element)
-    #pop all elements from the heap out
-    while not(my_heap.is_empty()):
-        ret.append(my_heap.remove_top())
-    return ret
+    my_heap = list
+    heap.heapify(my_heap)
+    return [heap.heappop(my_heap) for i in range(len(my_heap))]
 
 
 def quick_sort(one):
@@ -137,6 +107,5 @@ def quick_sort(one):
                 less.append(one[index])
             else:
                 greater.append(one[index])
-        sec1 = quick_sort(less)
-        sec2 = quick_sort(greater)
-        return (sec1 + pivot + sec2)
+        return (quick_sort(less) + pivot + quick_sort(greater))
+    
